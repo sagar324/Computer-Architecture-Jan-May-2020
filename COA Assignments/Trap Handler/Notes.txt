@@ -1,0 +1,65 @@
+1.initaliazing stack pointer using lui (load upper immediate)
+  ()
+2. write mtvec(machine trap vector) to point to trap_entry value(can't directly write csrw using trap_entry,we need temporary register)
+3. if there is a trap it will go to trap_entry
+
+
+
+
+Trap _ entry:(entry point for trap):
+whenever a trap happens,we have to save the context and handle the exception
+we basically save all the register values onto the stack,
+we decrement the stack pointer value by 32 locations and then next 32 instructions are storing the 32 registers onto the stack...
+
+
+Note: x0 is always 0
+1st location is x1,
+2nd location is x2,...
+
+by handling a trap/function call we might overright register values,
+so storing all the register values on the stack is better.
+x0 is always 0 so we need not save it.
+
+
+
+Trap_handler:
+
+store the mcause and mepc in a specific location //stack pointer
+
+and then ret
+
+then we restore all the registers and finish.
+
+
+____________________________________________________
+
+
+mret : return from interrupt,(uses mepc to go back)
+ret : return from function call(returns to the ra) (uses x11 to go back).
+
+____________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
