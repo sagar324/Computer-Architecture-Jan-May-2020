@@ -1,0 +1,6 @@
+medeleg - csr register
+_________________
+
+7th bit = 1 : mcause == 7 traps will delegate
+
+_________________
